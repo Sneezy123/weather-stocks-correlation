@@ -9,10 +9,15 @@ quotes = yf.Search(stock_name, max_results=10).quotes
 
 quote = quotes[0]["symbol"]
 if len(quotes) > 1:
-    [
-        print(f"{idx + 1}) {quote['symbol']} ({quote['longname']})")
-        for idx, quote in enumerate(quotes)
-    ]
+    for idx, quote in enumerate(quotes):
+        longname = "N/A"
+        try:
+            longname = quote["longname"]
+        except KeyError:
+            pass
+
+        print(f"{idx + 1}) {quote['symbol']} ({longname})")
+
     inp = -1
     while True:
         try:
