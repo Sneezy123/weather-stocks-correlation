@@ -17,13 +17,17 @@ if len(quotes) > 1:
             pass
 
         print(f"{idx + 1}) {quote['symbol']} ({longname})")
+    print("Q) Quit")
 
     inp = -1
     while True:
+        inp = input("> ")
         try:
-            inp = int(input("> "))
+            inp = int(inp)
             break
         except Exception:
+            if inp.lower() == "q":
+                exit(0)
             continue
     quote = quotes[inp - 1]["symbol"]
 
